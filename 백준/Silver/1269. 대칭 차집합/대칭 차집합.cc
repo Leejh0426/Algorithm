@@ -1,32 +1,30 @@
-#include <algorithm>
-#include <iostream>
-#include <map>
-#include <vector>
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+int n, m;
 
-void init() {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-}
-
+int ret;
+map<int, int> _map;
 int main() {
-    init();
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL); cout.tie(NULL);
 
-    int A, B, sum = 0;
-    std::cin >> A >> B;
+    cin >> n >> m;
+    int temp;
+    for (int i = 0; i < n; i++) {
+        cin >> temp; 
+        _map[temp]++;
 
-    std::map<int, bool> mp;
+    }
+    for (int j = 0; j < m; j++) {
+        cin >> temp; 
+        _map[temp]++;
+    }
+    for (auto it : _map) {
+        if (it.second == 1)ret++;
+    }
+    
+    cout << ret;
 
-    for (int i = 0; i < A + B; ++i) {
-        int tmp;
-	std::cin >> tmp;
-
-        // 입력받을 때마다 없으면 추가, 존재하면 삭제
-	if (mp[tmp] == true)
-		mp.erase(tmp);
-	else
-		mp[tmp] = true;
-	}
-
-    std::cout << mp.size();
+    return 0;
 }
