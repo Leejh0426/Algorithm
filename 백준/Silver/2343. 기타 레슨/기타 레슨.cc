@@ -10,19 +10,18 @@ int ret = 987654321;
 
 bool check(int mid) {
 	if (mx > mid) return false;
-	int sum = 0;
-	int cnt = 1;
-	for (int i = 0; i < n; i++) {
-		if (sum + a[i] > mid) {
-			sum = a[i];
-			cnt++;
-			if (cnt > m) return false;
-		}
-		else sum += a[i];
-		
-	}
+	int temp = mid;
+	int cnt = 0;
 
-	return true;
+	for (int i = 0; i < n; i++) {
+		if (mid - a[i] < 0) {
+			mid = temp;
+			cnt++;
+		}
+		mid -= a[i];
+	}
+	if (mid != temp)cnt++;
+	return cnt <= m;
 }
 
 int main() {
