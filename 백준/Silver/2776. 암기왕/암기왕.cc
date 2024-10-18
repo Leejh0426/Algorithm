@@ -27,24 +27,9 @@ int main() {
 
         for (int i = 0; i < m; i++) {
             cin >> temp;
-            int left = 0, right = v1.size() - 1;
-            int mid;
-            bool flag = false;
-            while (left <= right) {
-                mid = (left + right) / 2;
-                if (v1[mid] == temp) {
-                    cout << "1" << '\n';
-                    flag = true;
-                    break;
-                }
-                else if (v1[mid] > temp) {
-                    right = mid - 1;
-                }
-                else {
-                    left = mid + 1;
-                }
-            }
-            if (!flag) cout << "0" << "\n";
+            auto iter = lower_bound(v1.begin(), v1.end(), temp);
+            if (iter != v1.end() && *iter == temp) cout << "1" << "\n";
+            else cout << "0" << "\n";
             
         }
 
