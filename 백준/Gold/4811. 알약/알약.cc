@@ -35,7 +35,9 @@ ll go(string s, int h_number, int w_number) {
 
 
 int main() {
-	
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
 
 	while (true) {
 		memset(dp, -1, sizeof(dp));
