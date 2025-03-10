@@ -1,55 +1,45 @@
-#include<iostream>
-#include <string>
-#include <vector>
-#include <algorithm>
-#include<map>
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 
 using namespace std;
 
-int dy[] = { -1,0,1,0 };
-int dx[] = { 0,1,0,-1 };
+int dy[4] = { -1,0,1,0 };
+int dx[4] = { 0,1,0,-1 };
 
-int visited[100][100];
-int arr[100][100];
+int n, m;
 
-int N, M;
+string s[101];
+int visited[101][101];
 
-void BFS() {
-	visited[0][0] = 1;
+void bfs(int y, int x) {
 	queue<pair<int,int>> q;
-	q.push({ 0,0 });
-	while (q.size()) {
-		pair<int, int> p = q.front();
+	q.push({y,x});
+	while (!q.empty()) {
+		pair<int,int> p = q.front();
 		q.pop();
-		int y = p.first;
-		int x = p.second;
-		int yd;
-		int xd;
 		for (int i = 0; i < 4; i++) {
-			yd = y + dy[i];
-			xd = x + dx[i];
-			if (xd < 0 || yd < 0 || yd >= N || xd >= M || arr[yd][xd] == 0) continue;
-			if (visited[yd][xd] != 0) continue;
-			visited[yd][xd] = visited[y][x] + 1;
-			q.push({ yd,xd });
+			int ny = p.first + dy[i];
+			int nx = p.second + dx[i];
+			if (ny < 0 || nx < 0 || ny >= n || nx >= m) continue;
+			if (s[ny][nx] == '0') continue;
+			if (visited[ny][nx] != 0) continue;
+			visited[ny][nx] = visited[p.first][p.second] + 1;
+			q.push({ ny,nx });
 		}
-
 	}
 
+	
 }
 
 int main() {
-	cin >> N >> M;
-	string Miro;
+	cin >> n >> m;
 
-	for (int i = 0; i < N; i++) {
-		cin >> Miro;
-		for (int j = 0; j < M; j++) {
-			arr[i][j]= Miro[j] - '0';
-		}
+	for (int i = 0; i < n; i++) {
+		cin >> s[i];
 	}
-
-	BFS();
-	cout << visited[N-1][M-1];
+	visited[0][0] = 0;
+	bfs(0, 0);
+	
+	cout << visited[n-1][m-1]+1;
+	
+	return 0;
 }
