@@ -1,38 +1,47 @@
-#include<bits/stdc++.h>
-
+#include <bits/stdc++.h>
 using namespace std;
 
-bool che[4000001];
-int n, a[2000001], p, lo, hi, ret, sum;
+int n;
+
+bool arr[4000004];
+int ret;
+priority_queue<int> pq;
 
 int main() {
+
 	cin >> n;
+
+	for (int i = 2; i*i <= n; i++) {
+		if (!arr[i]) {
+			for (int j = i * i; j <= n; j += i) // 이전코드랑비교해서 여기만수정
+			{
+				arr[j] = true;
+			}
+		 }
+	}
+
+	int sum = 0;
 	
-	for (int i = 2; i <= n; i++) {
-		if (che[i]) continue;
-		for (int j = 2 * i; j <= n; j += i) {
-			che[j] = 1;
+	
+	for (int i = n; i > 1; i--) {
+		if (!arr[i]) {
+			sum += i;
+			pq.push(i);
+			if (sum == n) {
+				ret++;
+				sum -= pq.top();
+				pq.pop();
+			//	cout << "I : " << i << '\n';
+			}
+			else if (sum > n) {
+				sum -= pq.top();
+				pq.pop();
+			}
 		}
+		//cout<<i<<" "<< sum << '\n';
 	}
 
-	for (int i = 2; i <= n; i++) {
-		if (!che[i]) a[p++] = i;
-	}
-
-	while (1) {
-		if (sum >= n) sum -= a[lo++];
-		else if (hi == p) break;
-		else sum += a[hi++];
-		if (sum == n) ret++;
-
-	}
 	cout << ret;
 
 	return 0;
-	
 }
-
-
-
-
-
