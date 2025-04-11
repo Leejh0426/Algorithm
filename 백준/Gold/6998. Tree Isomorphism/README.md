@@ -1,10 +1,10 @@
-# [Gold IV] Tree Isomorphism - 6998 
+# [Gold III] Tree Isomorphism - 6998 
 
 [문제 링크](https://www.acmicpc.net/problem/6998) 
 
 ### 성능 요약
 
-메모리: 2032 KB, 시간: 0 ms
+메모리: 2028 KB, 시간: 0 ms
 
 ### 분류
 
@@ -12,7 +12,7 @@
 
 ### 제출 일자
 
-2024년 12월 5일 12:17:55
+2025년 4월 11일 22:39:07
 
 ### 문제 설명
 
